@@ -61,7 +61,8 @@ angular.module('ui.bootstrap.contextMenu', [])
         /// <summary>Process individual item</summary>
         "use strict";
         // nestedMenu is either an Array or a Promise that will return that array.
-        var nestedMenu = angular.isArray(item[1]) || (item[1] && angular.isFunction(item[1].then))
+        var nestedMenu = angular.isObject(item) && item.nestedMenu
+          ? item.nestedMenu : angular.isArray(item[1]) || (item[1] && angular.isFunction(item[1].then))
           ? item[1] : angular.isArray(item[2]) || (item[2] && angular.isFunction(item[2].then))
           ? item[2] : angular.isArray(item[3]) || (item[3] && angular.isFunction(item[3].then))
           ? item[3] : null;
